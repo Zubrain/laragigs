@@ -8,17 +8,25 @@ use Illuminate\Support\Facades\DB;
 
 class ListingController extends Controller
 {
+    //show all listings
     public function index()
     {
-        $listing = DB::table('listings')->get();
+        $listings = DB::table('listings')->get();
  
-        return view('listing', ['listing' => $listing]);
+        return view('listings.index', ['listings' => $listings]);
     }
 
+    //show single listing
     public function show($id)
     {
         $list = DB::table('listings')->find($id);
+
+        if($list) {
+            return view('listings.show', ['list' => $list]);
+        }else{
+            abort('404');
+        }
  
-        return view('show', ['list' => $list]);
+        
     }
 }
