@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Listing;
+
 
 
 class ListingController extends Controller
@@ -11,7 +14,7 @@ class ListingController extends Controller
     //show all listings
     public function index()
     {
-        $listings = DB::table('listings')->get();
+        $listings = Listing::latest()->filter(request(['tag']))->get();
  
         return view('listings.index', ['listings' => $listings]);
     }
