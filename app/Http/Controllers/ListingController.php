@@ -29,7 +29,11 @@ class ListingController extends Controller
         }else{
             abort('404');
         }
- 
-        
+    }
+
+    //show create form
+    public function create()
+    {
+        return view('listings.create');
     }
 }
