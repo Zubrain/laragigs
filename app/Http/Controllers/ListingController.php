@@ -51,9 +51,19 @@ class ListingController extends Controller
             'description' => 'required'
         ]);
 
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
 
         Listing::create($formFields);
 
         return redirect('/')->with('message', 'Listing Created Successfully!');
+    }
+
+    //show edit form
+    public function edit(Listing $listing)
+    {
+        return view('listings.edit', ['listing' => $listing]);
     }
 }
