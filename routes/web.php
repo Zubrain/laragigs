@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,6 @@ Route::get('/register', [UserController::class, 'register']);
 
 //Store Register Form Data
 Route::post('/users', [UserController::class, 'store']);
+
+//Log User Out
+Route::post('/logout', [UserController::class, 'logout']);
