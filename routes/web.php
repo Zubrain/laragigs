@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
 use App\Models\User;
+use Illuminate\Routing\RouteAction;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,9 @@ Route::post('/users', [UserController::class, 'store']);
 
 //Log User Out
 Route::post('/logout', [UserController::class, 'logout']);
+
+//Show Login Form
+Route::get('/login', [UserController::class, 'login']);
+
+//Login User
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
