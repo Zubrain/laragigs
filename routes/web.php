@@ -28,31 +28,31 @@ Route::get('/', [ListingController::class, 'index']);
 Route::get('/listing/{id}', [ListingController::class, 'show']);
 
 //Show create form
-Route::get('listings/create', [ListingController::class, 'create']);
+Route::get('listings/create', [ListingController::class, 'create'])->middleware('auth'); 
 
 //Store New Listing Data
-Route::post('listings', [ListingController::class, 'store']);
+Route::post('listings', [ListingController::class, 'store'])->middleware('auth');
 
 //Show edit form
-Route::get('listing/{listing}/edit', [ListingController::class, 'edit']);
+Route::get('listing/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
 
 //Update Listing
-Route::put('listing/{listing}', [ListingController::class, 'update']);
+Route::put('listing/{listing}', [ListingController::class, 'update'])->middleware('auth');
 
 //Delete Listing
-Route::delete('listing/{listing}', [ListingController::class, 'delete']);
+Route::delete('listing/{listing}', [ListingController::class, 'delete'])->middleware('auth');
 
 //User Register Form
-Route::get('/register', [UserController::class, 'register']);
+Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 
 //Store Register Form Data
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
 //Log User Out
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //Show Login Form
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 //Login User
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('guest');
